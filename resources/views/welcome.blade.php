@@ -19,9 +19,13 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        @vite(['resources/js/app.js' , 'resources/js/app.css'])
+        @vite(['resources/css/app.css'])
     </head>
     <body class="antialiased">
+        <noscript>
+            <strong>We're sorry but this app doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
         <div id="app"></div>
+        @vite(['resources/js/app.js'])
     </body>
 </html>
