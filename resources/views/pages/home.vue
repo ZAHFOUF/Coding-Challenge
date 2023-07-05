@@ -1,21 +1,29 @@
 <script setup>
 
-import { MDBInput, MDBBtn , MDBListGroup , MDBListGroupItem  } from 'mdb-vue-ui-kit';
-import { ref } from "vue";
+import { MDBInput, MDBTable , MDBBtn , MDBListGroup , MDBListGroupItem  } from 'mdb-vue-ui-kit';
+import { onMounted, ref } from "vue";
 
 
 
 const url = ref("");
 const shorts = ref([]);
+const urls = ref([])
 
 
 // send request for generate short url
 function generate (event) {
     axios.post("/api/shorturl",{url:url.value}).then(
-        (e)=> shorts.value.push(e.data)
+        (e)=> { shorts.value.push(e.data)  ; url.value = "" }
     )
 
 }
+
+function getUrls (){
+    axios.get("/api/shorturl").then(
+        (e)=>  urls.value= e.data.data
+    )
+}
+
 
 // copy the short url
 function copy (text,element) {
@@ -36,6 +44,51 @@ function copy (text,element) {
 
 }
 
+
+function dateText(time) {
+
+
+// Get the current date/time
+const now = new Date();
+
+// Create a new date object with the specific date/time
+const specificDate = new Date(time);
+
+
+// Calculate the difference in seconds
+const diffSeconds = Math.floor((now - specificDate ) / 1000);
+
+
+// Calculate the difference in minutes
+const diffMin = Math.floor( (now - specificDate) / (1000 * 60) )
+
+// Calculate the difference in hours
+const diffHours = Math.floor(diffMin / 60);
+
+
+console.log(diffSeconds,diffMin,diffHours);
+
+// return the right text
+if (diffHours > 0) {
+    return `${diffHours} hour ago`
+}else if (diffMin > 0) {
+    return `${diffMin} min ago`
+}else if (diffSeconds > 0) {
+    return `${diffSeconds} sec ago`
+}else{
+    return `now`
+}
+
+
+
+
+
+}
+
+
+// when the componenet mounted
+
+onMounted(()=> getUrls())
 
 
 
@@ -94,6 +147,36 @@ function copy (text,element) {
 
   </MDBListGroupItem>
   </MDBListGroup>
+
+
+
+<div  style="margin-top: 100px; margin-bottom: 40px;" >
+    <h2 class="text-center" style="margin-bottom: 32px;">list of previously shortened URLs</h2>
+    <MDBTable  class="align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Id</th>
+        <th>Link</th>
+        <th>Clicks</th>
+        <th>Last Click</th>
+      </tr>
+    </thead>
+    <tbody v-for="item in urls">
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.short_url }}</td>
+            <td>{{ item.clicks }}</td>
+            <td>{{ dateText( item.lastclick ) }}</td>
+        </tr>
+
+
+    </tbody>
+    </MDBTable>
+
+
+</div>
+
+
 
 
 </div>

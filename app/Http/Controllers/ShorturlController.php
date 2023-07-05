@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ShorturlResource;
 use App\Models\Shorturl;
 use Illuminate\Http\Request;
 use Nette\Utils\Random;
@@ -15,7 +16,11 @@ class ShorturlController extends Controller
      */
     public function index()
     {
-        //
+       $urls =   Shorturl::all('*');
+
+
+
+       return ShorturlResource::collection($urls);
     }
 
 
