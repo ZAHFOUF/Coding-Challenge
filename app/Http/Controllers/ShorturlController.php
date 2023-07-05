@@ -16,7 +16,7 @@ class ShorturlController extends Controller
      */
     public function index()
     {
-       $urls =   Shorturl::all('*');
+       $urls =   Shorturl::all('*')->sortByDesc('clicks');
 
 
 

@@ -159,6 +159,7 @@ onMounted(()=> getUrls())
         <th>Link</th>
         <th>Clicks</th>
         <th>Last Click</th>
+        <th>Unique Visitors</th>
       </tr>
     </thead>
     <tbody v-for="item in urls">
@@ -167,6 +168,7 @@ onMounted(()=> getUrls())
             <td>{{ item.short_url }}</td>
             <td>{{ item.clicks }}</td>
             <td>{{ dateText( item.lastclick ) }}</td>
+            <td>{{ item.uniquevisitors }}</td>
         </tr>
 
 
