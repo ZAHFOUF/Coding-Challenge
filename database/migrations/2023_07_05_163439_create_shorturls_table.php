@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->longText("origin_url");
             $table->longText("short_url");
+            $table->integer("clicks")->default(0);
+            $table->timestamp("lastclick")->default(null);
             $table->timestamps();
         });
     }

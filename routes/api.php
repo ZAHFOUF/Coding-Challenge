@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::post("/shorturl",[ShorturlController::class,'store']);
 
+Route::get("/shorturl",[ShorturlController::class,'index']);
+

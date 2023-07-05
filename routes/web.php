@@ -25,4 +25,4 @@ Route::get('/app/{any}' , function (){
 });
 
 
-Route::get('/{any}' , [ShorturlController::class , 'short']);
+Route::get('/{any}' , [ShorturlController::class , 'short'])->middleware("tracker");
