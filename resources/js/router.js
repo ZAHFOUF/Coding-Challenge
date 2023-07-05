@@ -8,7 +8,7 @@ import {createRouter , createWebHistory} from 'vue-router'
 // 2. Define routes
 const routes = [
   { path: '/' ,  component: Home },
-  { path: '/statistics' ,  component: St},
+  { path: '/app/statistics' ,  component: St},
 ]
 
 // 3. Create the router instance and pass the `routes` option

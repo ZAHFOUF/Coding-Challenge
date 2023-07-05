@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ShorturlController;
+use App\Models\Shorturl;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/app/{any}' , function (){
+    return view('welcome');
+
+});
+
+
+Route::get('/{any}' , [ShorturlController::class , 'short']);

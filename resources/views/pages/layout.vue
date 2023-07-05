@@ -1,19 +1,30 @@
 <script setup>
-
-
+import 'mdb-vue-ui-kit/css/mdb.min.css';
+import {MDBContainer} from 'mdb-vue-ui-kit';
 </script>
 
 <template>
 
-    <router-link to="/statistics">
+    <div class="p-5">
 
-        Statistics
+        <h1 class="text-center text-dark">
+          URL Shortener
+    </h1>
 
-    </router-link>
+    </div>
 
-    <router-view>
 
-    </router-view>
+
+    <MDBContainer style="display: grid; place-items: center;">
+
+        <router-view>
+
+</router-view>
+
+
+</MDBContainer>
+
+
 
 
 </template>
