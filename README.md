@@ -15,6 +15,10 @@
 
 # step five : run "PHP artisan migrate"
 
+
+# step five : run "npm i" and after that run "npm run build"
+
+
 # last step : run "PHP artisan serve"
 
 
